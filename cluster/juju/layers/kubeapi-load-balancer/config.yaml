@@ -3,6 +3,10 @@ options:
     type: int
     default: 443
     description: The port to run the loadbalancer
+  proxy_read_timeout:
+    type: int
+    default: 90
+    description: The proxy_read_timeout nginx configuration value
   extra_sans:
     type: string
     default: ""

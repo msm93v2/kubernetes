@@ -112,6 +112,7 @@ def install_load_balancer(apiserver, tls):
         subprocess.call(chown)
 
         port = hookenv.config('port')
+        read_timeout = hookenv.config('proxy_read_timeout')
         hookenv.open_port(port)
         services = apiserver.services()
         nginx.configure_site(
@@ -122,6 +123,7 @@ def install_load_balancer(apiserver, tls):
                 port=port,
                 server_certificate=server_cert_path,
                 server_key=server_key_path,
+                proxy_read_timeout=read_timeout,
         )
         hookenv.status_set('active', 'Loadbalancer ready.')
 
